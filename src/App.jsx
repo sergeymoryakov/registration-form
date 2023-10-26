@@ -4,8 +4,13 @@ import Counter from "./components/Counter";
 import Button from "./components/buttons/Button";
 // import "./App.css";
 
+const COUNTER_INIT = 0;
+const COUNTER_STEP = 1;
+const COUNTER_LIMIT_BOTTOM = -10;
+const COUNTER_LIMIT_TOP = 10;
+
 function App() {
-    const [counter, setCounter] = useState(0);
+    const [counter, setCounter] = useState(COUNTER_INIT);
     // const [dayTime, setDayTime] = useState("Noon");
 
     // console.log(useState(0));
@@ -16,7 +21,7 @@ function App() {
         // or:
         setCounter((prevCounter) => {
             // console.log(prevCounter);
-            return prevCounter - 1;
+            return prevCounter - COUNTER_STEP;
         });
         // setDayTime("Morning");
     }
@@ -27,24 +32,28 @@ function App() {
         // or:
         setCounter((prevCounter) => {
             // console.log(prevCounter);
-            return prevCounter + 1;
+            return prevCounter + COUNTER_STEP;
         });
         // setDayTime("Afternoon");
     }
 
     function isBtnOneDisabled() {
-        return counter === -5;
+        return counter <= COUNTER_LIMIT_BOTTOM;
     }
 
     function isBtnTwoDisabled() {
-        return counter === 5;
+        return counter >= COUNTER_LIMIT_TOP;
+    }
+
+    function isOutOfLimit() {
+        return counter <= COUNTER_LIMIT_BOTTOM || counter >= COUNTER_LIMIT_TOP;
     }
 
     return (
         <div className="container">
             {/* <h3>DayTime: {dayTime}</h3> */}
             {/* <h3>Counter: {counter}</h3> */}
-            <Counter value={counter} />
+            <Counter value={counter} isLimit={isOutOfLimit()} />
 
             <div className="manipulators">
                 <Button
