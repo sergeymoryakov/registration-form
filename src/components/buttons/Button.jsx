@@ -1,7 +1,12 @@
 import React from "react";
 
-function Button({ buttonName, onClick }) {
-    return <button onClick={onClick}>{buttonName}</button>;
+function Button({ isDisabled, buttonName, onClick }) {
+    // const btnClass = btnClass;
+    return (
+        <button disabled={isDisabled} onClick={onClick}>
+            {buttonName}
+        </button>
+    );
 }
 
 export default Button;
