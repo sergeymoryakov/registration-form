@@ -5,7 +5,7 @@ function LogsHistory({ array }) {
     // const arrayLength = array.length;
 
     const logsHistoryList = array.map((log) => (
-        <li>
+        <li key={log.id}>
             Action: {log.action}, Prev Value: {log.prevValue}, New Value:{" "}
             {log.newValue}
         </li>
