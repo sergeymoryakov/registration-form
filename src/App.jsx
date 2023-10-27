@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import Counter from "./components/Counter";
 import Button from "./components/buttons/Button";
-// import "./App.css";
+import LogsHistory from "./components/LogsHistory";
 
 const COUNTER_INIT = 0;
 const COUNTER_STEP = 1;
@@ -11,30 +11,20 @@ const COUNTER_LIMIT_TOP = 10;
 
 function App() {
     const [counter, setCounter] = useState(COUNTER_INIT);
-    // const [dayTime, setDayTime] = useState("Noon");
-
-    // console.log(useState(0));
+    const [logsArray, setLogsArray] = useState([]);
 
     function handleButtonOneClick() {
-        // Possible simple:
-        // setCounter(counter - 1);
-        // or:
-        setCounter((prevCounter) => {
-            // console.log(prevCounter);
-            return prevCounter - COUNTER_STEP;
-        });
-        // setDayTime("Morning");
+        const newCounter = counter - COUNTER_STEP;
+
+        setCounter(newCounter);
+        setLogsArray([...logsArray, newCounter]);
     }
 
     function handleButtonTwoClick() {
-        // Possible simple:
-        // setCounter(counter + 1);
-        // or:
-        setCounter((prevCounter) => {
-            // console.log(prevCounter);
-            return prevCounter + COUNTER_STEP;
-        });
-        // setDayTime("Afternoon");
+        const newCounter = counter + COUNTER_STEP;
+
+        setCounter(newCounter);
+        setLogsArray([...logsArray, newCounter]);
     }
 
     function isBtnOneDisabled() {
@@ -51,8 +41,6 @@ function App() {
 
     return (
         <div className="container">
-            {/* <h3>DayTime: {dayTime}</h3> */}
-            {/* <h3>Counter: {counter}</h3> */}
             <Counter value={counter} isLimit={isOutOfLimit()} />
 
             <div className="manipulators">
@@ -68,6 +56,8 @@ function App() {
                     onClick={handleButtonTwoClick}
                 />
             </div>
+
+            <LogsHistory array={logsArray} />
         </div>
     );
 }
