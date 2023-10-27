@@ -4,7 +4,12 @@ import React from "react";
 function LogsHistory({ array }) {
     // const arrayLength = array.length;
 
-    const logsHistoryList = array.map((log) => <li>{log}</li>);
+    const logsHistoryList = array.map((log) => (
+        <li>
+            Action: {log.action}, Prev Value: {log.prevValue}, New Value:{" "}
+            {log.newValue}
+        </li>
+    ));
 
     return (
         <>

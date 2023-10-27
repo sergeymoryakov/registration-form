@@ -1,4 +1,5 @@
 import React from "react";
+import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
 import Counter from "./components/Counter";
 import Button from "./components/buttons/Button";
@@ -16,15 +17,29 @@ function App() {
     function handleButtonOneClick() {
         const newCounter = counter - COUNTER_STEP;
 
+        const newLog = {
+            id: uuidv4(),
+            action: "Deduction",
+            prevValue: counter,
+            newValue: newCounter,
+        };
+
         setCounter(newCounter);
-        setLogsArray([...logsArray, newCounter]);
+        setLogsArray([...logsArray, newLog]);
     }
 
     function handleButtonTwoClick() {
         const newCounter = counter + COUNTER_STEP;
 
+        const newLog = {
+            id: uuidv4(),
+            action: "Adding",
+            prevValue: counter,
+            newValue: newCounter,
+        };
+
         setCounter(newCounter);
-        setLogsArray([...logsArray, newCounter]);
+        setLogsArray([...logsArray, newLog]);
     }
 
     function isBtnOneDisabled() {
