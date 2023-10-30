@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import Button from "./components/buttons/Button";
+import "./Signup.css";
 
 function Signup() {
-    const [accountDetails, setAccountDetails] = useState({
-        callsign: "Your desired callsign",
+    const placeholders = {
+        username: "Your desired username",
         firstName: "Your first name",
         lastName: "Your last name",
         email: "Your email",
@@ -11,23 +12,18 @@ function Signup() {
         password2: "confirm password",
         agreeMarketing: "agree",
         agreeTerms: true,
-    });
+    };
 
-    const [accountForm, setAccountForm] = useState({
-        callsign: "",
-        firstName: "",
-        lastName: "",
-        email: "",
-        password1: "",
-        password2: "",
-        agreeMarketing: "",
-        agreeTerms: false,
-    });
+    const [accountForm, setAccountForm] = useState({});
 
     const [isError, setError] = useState(false);
 
     function handleInputFieldChange(e) {
-        const { name, value } = e.target;
+        const { name, value, placeholder } = e.target;
+
+        console.log(e.target);
+        console.log("value: ", value);
+        console.log("placeholder: ", placeholder);
 
         setAccountForm({
             ...accountForm,
@@ -48,49 +44,44 @@ function Signup() {
         });
     }
 
-    function handleCreateAccountBtn(e) {
-        console.log("Clicked Create Account Button");
-        if (
+    function isBtnDisabled() {
+        const isDisabled =
+            !accountForm.username ||
             !accountForm.firstName ||
             !accountForm.lastName ||
-            !accountForm.email
-        ) {
+            !accountForm.email ||
+            !accountForm.password1 ||
+            !accountForm.agreeMarketing ||
+            !accountForm.agreeTerms;
+
+        console.log(isDisabled);
+
+        return isDisabled;
+    }
+
+    function handleCreateAccountBtn(e) {
+        console.log("Clicked Create Account Button");
+        console.log("isBtnDisabled: ", isBtnDisabled());
+
+        console.log("accountForm: ", accountForm);
+        if (!accountForm.firstName || !accountForm.lastName) {
             setError(true);
         } else {
             setError(false);
         }
-        console.log("accountForm.agreeTerms: ", accountForm.agreeTerms);
-        setAccountDetails({
-            ...accountDetails,
-            callsign: accountForm.callsign,
-            firstName: accountForm.firstName,
-            lastName: accountForm.lastName,
-            email: accountForm.email,
-            password1: accountForm.password1,
-            password2: accountForm.password2,
-            agreeMarketing: accountForm.agreeMarketing,
-            agreeTerms: accountForm.agreeTerms,
-        });
-        // alert(
-        //     "New account succefully created. Please check your inbox email for detailed instructions."
-        // );
-        console.log(accountDetails);
-        console.log("callsign: ", accountDetails.callsign);
-        console.log("firstName: ", accountDetails.firstName);
-        console.log("lastName: ", accountDetails.lastName);
-        console.log("Email: ", accountDetails.email);
-        console.log("Password: ", accountDetails.password1);
-        console.log("Accept Newsletter: ", accountDetails.agreeMarketing);
-        console.log("Accept T&C: ", accountDetails.agreeTerms);
-    }
 
-    const [feedback, setFeedback] = useState({
-        customerName: "Seppo",
-        email: "seppo.digital@gmail.com",
-        phone: "+358-84-99999999",
-        query: "Query here",
-        agreeTerms: true,
-    });
+        console.log("username: ", accountForm.username);
+        console.log("firstName: ", accountForm.firstName);
+        console.log("lastName: ", accountForm.lastName);
+        console.log("Email: ", accountForm.email);
+        console.log("Password: ", accountForm.password1);
+        console.log("Accept Newsletter: ", accountForm.agreeMarketing);
+        console.log("Accept T&C: ", accountForm.agreeTerms);
+
+        alert(
+            "New account succefully created. Please check your inbox email for detailed instructions."
+        );
+    }
 
     return (
         <div className="container">
@@ -100,122 +91,121 @@ function Signup() {
             ) : (
                 ""
             )}
-            <form action=""></form>
-            <label>
-                Callsign:
-                <input
-                    type="text"
-                    name="callsign"
-                    value={accountForm.callsign}
-                    onChange={handleInputFieldChange}
-                />
-            </label>
-            <label>
-                First Name:
-                <input
-                    type="text"
-                    name="firstName"
-                    value={accountForm.firstName}
-                    onChange={handleInputFieldChange}
-                />
-            </label>
-            <label>
-                Last Name:
-                <input
-                    type="text"
-                    name="lastName"
-                    value={accountForm.lastName}
-                    onChange={handleInputFieldChange}
-                />
-            </label>
-            <label>
-                Email:
-                <input
-                    type="email"
-                    name="email"
-                    value={accountForm.email}
-                    onChange={handleInputFieldChange}
-                />
-            </label>
-            <label>
-                Password:
-                <input
-                    type="password"
-                    name="password1"
-                    value={accountForm.password1}
-                    onChange={handleInputFieldChange}
-                />
-            </label>
-            <label>
-                Confirm Password:
-                <input
-                    type="password"
-                    name="password2"
-                    value={accountForm.password2}
-                    onChange={handleInputFieldChange}
-                />
-            </label>
-
-            <p>
-                I like to receive Weekly Newsletters:
-                <label>
+            <form className="form-signup" action="">
+                <div className="input-wrapper">
+                    <label className="label-signup">Username:</label>
                     <input
-                        type="radio"
-                        name="agreeMarketing"
-                        value="agree"
-                        checked={accountForm.agreeMarketing === "agree"}
+                        className="input-field"
+                        type="text"
+                        name="username"
+                        autoComplete="username"
+                        placeholder={placeholders.username}
+                        onChange={handleInputFieldChange}
+                        required
+                    />
+                </div>
+                <div className="input-wrapper">
+                    <label>First Name:</label>
+                    <input
+                        className="input-field"
+                        type="text"
+                        name="firstName"
+                        autoComplete="name"
+                        placeholder={placeholders.firstName}
                         onChange={handleInputFieldChange}
                     />
-                    Agree
-                </label>
-                <label>
+                </div>
+                <div className="input-wrapper">
+                    <label>Last Name:</label>
                     <input
-                        type="radio"
-                        name="agreeMarketing"
-                        value="disagree"
-                        checked={accountForm.agreeMarketing === "disagree"}
+                        className="input-field"
+                        type="text"
+                        name="lastName"
+                        autoComplete="family-name"
+                        placeholder={placeholders.lastName}
                         onChange={handleInputFieldChange}
                     />
-                    Disagree
-                </label>
-            </p>
-            <label>
-                <input
-                    type="checkbox"
-                    name="agreeTerms"
-                    checked={accountForm.agreeTerms === true}
-                    onChange={handleCheckboxClick}
-                />{" "}
-                I agree with Term of Services
-            </label>
-            <Button
-                // isDisabled={isBtnTwoDisabled()}
-                buttonName={"Create Account and Continue"}
-                onClick={handleCreateAccountBtn}
-            />
-            <p>
-                Already registered? <a href="">Log In</a>
-            </p>
+                </div>
+                <div className="input-wrapper">
+                    <label>Email:</label>
+                    <input
+                        className="input-field"
+                        type="email"
+                        name="email"
+                        autoComplete="email"
+                        placeholder={placeholders.email}
+                        onChange={handleInputFieldChange}
+                    />
+                </div>
+                <div className="input-wrapper">
+                    <label>Password:</label>
+                    <input
+                        className="input-field"
+                        type="password"
+                        name="password1"
+                        autoComplete="new-password"
+                        placeholder={placeholders.password1}
+                        onChange={handleInputFieldChange}
+                    />
+                </div>
+                <div className="input-wrapper">
+                    <label>Confirm Password:</label>
+                    <input
+                        className="input-field"
+                        type="password"
+                        name="password2"
+                        autoComplete="new-password"
+                        placeholder={placeholders.password2}
+                        onChange={handleInputFieldChange}
+                    />
+                </div>
+                <div className="input-wrapper">
+                    I like to receive Weekly Newsletters:
+                    <div>
+                        <label>
+                            <input
+                                type="radio"
+                                name="agreeMarketing"
+                                value="agree"
+                                checked={accountForm.agreeMarketing === "agree"}
+                                onChange={handleInputFieldChange}
+                            />
+                            Agree
+                        </label>
+                        <label>
+                            <input
+                                type="radio"
+                                name="agreeMarketing"
+                                value="disagree"
+                                checked={
+                                    accountForm.agreeMarketing === "disagree"
+                                }
+                                onChange={handleInputFieldChange}
+                            />
+                            Disagree
+                        </label>
+                    </div>
+                </div>
+                <div className="input-wrapper">
+                    <input
+                        type="checkbox"
+                        name="agreeTerms"
+                        checked={accountForm.agreeTerms === true}
+                        onChange={handleCheckboxClick}
+                    />{" "}
+                    <label>I agree with Term of Services</label>
+                </div>
 
-            {/* For developing and testing purposes only. */}
-            {/* Remove from production code. */}
-            <ul>
-                <li>Callsign: {accountDetails.callsign}</li>
-                <li>First Name: {accountDetails.firstName}</li>
-                <li>Last Name: {accountDetails.lastName}</li>
-                <li>Email: {accountDetails.email}</li>
-                <li>Password: {accountDetails.password1}</li>
-                <li>Confirm password: {accountDetails.password2}</li>
-                <li>
-                    Sign me up for Weekly Newsletter:{" "}
-                    {accountDetails.agreeMarketing}
-                </li>
-                <li>
-                    I agree with Terms and Conditions:{" "}
-                    {accountDetails.agreeTerms}
-                </li>
-            </ul>
-            {/* End of testing section. */}
+                <Button
+                    isDisabled={isBtnDisabled()}
+                    buttonName={"Create Account and Continue"}
+                    onClick={handleCreateAccountBtn}
+                />
+                <div className="input-wrapper">
+                    <p>Already registered?</p>
+                    <a href="">Log In</a>
+                </div>
+            </form>
         </div>
     );
 }
