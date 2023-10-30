@@ -3,12 +3,12 @@ import Button from "./components/buttons/Button";
 
 function Signup() {
     const [accountDetails, setAccountDetails] = useState({
-        callsign: "sailorman",
-        firstName: "Seppo",
-        lastName: "Merilainen",
-        email: "seppo.digital@gmail.com",
-        password1: "pa55word",
-        password2: "pa55word",
+        callsign: "Your desired callsign",
+        firstName: "Your first name",
+        lastName: "Your last name",
+        email: "Your email",
+        password1: "passoword",
+        password2: "confirm password",
         agreeMarketing: "agree",
         agreeTerms: true,
     });
@@ -67,10 +67,21 @@ function Signup() {
             lastName: accountForm.lastName,
             email: accountForm.email,
             password1: accountForm.password1,
+            password2: accountForm.password2,
             agreeMarketing: accountForm.agreeMarketing,
-            agreeTerms: !accountForm.agreeTerms,
+            agreeTerms: accountForm.agreeTerms,
         });
+        // alert(
+        //     "New account succefully created. Please check your inbox email for detailed instructions."
+        // );
         console.log(accountDetails);
+        console.log("callsign: ", accountDetails.callsign);
+        console.log("firstName: ", accountDetails.firstName);
+        console.log("lastName: ", accountDetails.lastName);
+        console.log("Email: ", accountDetails.email);
+        console.log("Password: ", accountDetails.password1);
+        console.log("Accept Newsletter: ", accountDetails.agreeMarketing);
+        console.log("Accept T&C: ", accountDetails.agreeTerms);
     }
 
     const [feedback, setFeedback] = useState({
@@ -146,7 +157,7 @@ function Signup() {
             </label>
 
             <p>
-                Do you like to receive Weekly Newsletter?
+                I like to receive Weekly Newsletters:
                 <label>
                     <input
                         type="radio"
@@ -177,6 +188,17 @@ function Signup() {
                 />{" "}
                 I agree with Term of Services
             </label>
+            <Button
+                // isDisabled={isBtnTwoDisabled()}
+                buttonName={"Create Account and Continue"}
+                onClick={handleCreateAccountBtn}
+            />
+            <p>
+                Already registered? <a href="">Log In</a>
+            </p>
+
+            {/* For developing and testing purposes only. */}
+            {/* Remove from production code. */}
             <ul>
                 <li>Callsign: {accountDetails.callsign}</li>
                 <li>First Name: {accountDetails.firstName}</li>
@@ -193,14 +215,7 @@ function Signup() {
                     {accountDetails.agreeTerms}
                 </li>
             </ul>
-            <Button
-                // isDisabled={isBtnTwoDisabled()}
-                buttonName={"Create Account and Continue"}
-                onClick={handleCreateAccountBtn}
-            />
-            <p>
-                Already registered? <a href="">Log In</a>
-            </p>
+            {/* End of testing section. */}
         </div>
     );
 }
