@@ -1,7 +1,13 @@
 .button-icon {
+    margin: 0;
+    padding: 0;
     height: fit-content;
     width: fit-content;
     border: 1px solid transparent;
     background-color: transparent;
     cursor: pointer;
+}
+
+.icon {
+    background-color: aquamarine;
 }

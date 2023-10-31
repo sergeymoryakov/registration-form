@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Button from "./components/buttons/Button";
 import ButtonIcon from "./components/buttons/button-icon";
+// import SpanError from "./components/SpanError";
 import "./Signup.css";
 import ICON_VISIBILITY_OFF from "./assets/visibility_off_FILL0_wght400_GRAD0_opsz24.svg";
 import ICON_VISIBILITY_ON from "./assets/visibility_FILL0_wght400_GRAD0_opsz24.svg";
@@ -22,6 +23,9 @@ function Signup() {
     const PASS_TYPE_VISIBLE = "text";
     const PASS_TYPE_INVISIBLE = "password";
 
+    const PASS1_COMPLEXITY_ERROR = "Password length 8 characters minimum.";
+    const PASS2_EQUALITY_ERROR = "Password entries are not equal.";
+
     const [pass1Visibility, setPass1Visibility] = useState(PASS_TYPE_INVISIBLE);
     const [pass2Visibility, setPass2Visibility] = useState(PASS_TYPE_INVISIBLE);
 
@@ -30,8 +34,11 @@ function Signup() {
     const [pass2VisibilityBtn, setPass2VisibilityBtn] =
         useState(ICON_VISIBILITY_OFF);
 
-    const [pass1Complexity, setPass1Complexity] = useState(false);
-    const [pass2Equality, setPass2Equality] = useState(false);
+    const [pass1Error, setPass1Error] = useState();
+    const [pass2Error, setPass2Error] = useState();
+
+    let pass1Complexity = true;
+    let pass2Equality = true;
 
     function handleInputFieldChange(e) {
         const { name, value } = e.target;
@@ -45,41 +52,26 @@ function Signup() {
     function handlePass1InputFieldChange(e) {
         const { name, value } = e.target;
 
-        setPass1Complexity(value.length >= 8 ? true : false);
+        pass1Complexity = value.length >= 8;
 
         console.log("pass1Complexity: ", pass1Complexity);
 
-        setAccountForm({
-            ...accountForm,
-            [name]: value,
-        });
-    }
-
-    function handlePass1InputFieldChange(e) {
-        const { name, value } = e.target;
-        const newPass1Complexity = value.length >= 8;
-
-        setPass1Complexity(newPass1Complexity);
-        console.log("pass1Complexity: ", newPass1Complexity);
+        setPass1Error(pass1Complexity == true ? "" : PASS1_COMPLEXITY_ERROR);
 
         setAccountForm({
             ...accountForm,
             [name]: value,
         });
-    }
-
-    function checkPassEquality(value) {
-        console.log("value: ", value);
-        console.log("accountForm.password1: ", accountForm.password1);
-        return value == accountForm.password1;
     }
 
     function handlePass2InputFieldChange(e) {
         const { name, value } = e.target;
 
-        setPass2Equality(checkPassEquality(value) ? true : false);
+        pass2Equality = value == accountForm.password1;
 
         console.log("pass2Equality: ", pass2Equality);
+
+        setPass2Error(pass2Equality == true ? "" : PASS2_EQUALITY_ERROR);
 
         setAccountForm({
             ...accountForm,
@@ -140,6 +132,8 @@ function Signup() {
     }
 
     function handleCreateAccountBtn(e) {
+        e.preventDefault();
+
         console.log("Clicked Create Account Button");
 
         console.log("Email: ", accountForm.email);
@@ -182,6 +176,10 @@ function Signup() {
                         buttonIconImg={pass1VisibilityBtn}
                         onClick={handleVisibility1Btn}
                     />
+
+                    {/* <SpanError functionName={isPassword1Compliant()} /> */}
+
+                    <span>{pass1Error}</span>
                 </div>
                 <div className="input-wrapper">
                     <label>Confirm Password:</label>
@@ -197,6 +195,10 @@ function Signup() {
                         buttonIconImg={pass2VisibilityBtn}
                         onClick={handleVisibility2Btn}
                     />
+
+                    {/* <SpanError functionName={isPassword2Compliant()} /> */}
+
+                    <span>{pass2Error}</span>
                 </div>
                 <div>
                     <input

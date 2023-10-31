@@ -17,3 +17,10 @@
 .input-password {
     width: 60%;
 }
+
+.password-1-error,
+.password-2-error {
+    color: red;
+    font-size: 0.5rem;
+    font-style: italic;
+}
