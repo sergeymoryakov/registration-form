@@ -1,6 +1,17 @@
 import React, { useState } from "react";
+// Import Switch from MUI library:
+import Switch from "@mui/material/Switch";
 import Button from "./components/buttons/Button";
+import ButtonIcon from "./components/buttons/button-icon";
 import "./Signup.css";
+import visibility_off from "./assets/visibility_off_FILL0_wght400_GRAD0_opsz24.svg";
+import visibility_on from "./assets/visibility_FILL0_wght400_GRAD0_opsz24.svg";
+
+// Fonts for MUI library:
+// import "@fontsource/roboto/300.css";
+// import "@fontsource/roboto/400.css";
+// import "@fontsource/roboto/500.css";
+// import "@fontsource/roboto/700.css";
 
 function Signup() {
     const placeholders = {
@@ -19,11 +30,12 @@ function Signup() {
     const [isError, setError] = useState(false);
 
     function handleInputFieldChange(e) {
-        const { name, value, placeholder } = e.target;
+        const { name, value } = e.target;
 
-        console.log(e.target);
-        console.log("value: ", value);
-        console.log("placeholder: ", placeholder);
+        // For TBS and Dev only - remove in production code:
+        // console.log(e.target);
+        // console.log("value: ", value);
+        // console.log("placeholder: ", placeholder);
 
         setAccountForm({
             ...accountForm,
@@ -34,14 +46,38 @@ function Signup() {
     function handleCheckboxClick(e) {
         const { name, checked } = e.target;
 
-        console.log("e.target: ", e.target);
-        console.log("name: ", name);
-        console.log("checked: ", checked);
+        // For TBS and Dev only - remove in production code:
+        // console.log("e.target: ", e.target);
+        // console.log("name: ", name);
+        // console.log("checked: ", checked);
 
         setAccountForm({
             ...accountForm,
             [name]: checked,
         });
+    }
+
+    // Switch from MUI library:
+    function ToggleSwitch() {
+        const [checked, setChecked] = React.useState(true);
+
+        const handleChange = (event) => {
+            setChecked(event.target.checked);
+            console.log(event.target.checked);
+        };
+
+        return (
+            <Switch
+                checked={checked}
+                onChange={handleChange}
+                inputProps={{ "aria-label": "controlled" }}
+            />
+        );
+    }
+
+    function handleVisibilityBtn() {
+        console.log("Change Visibility Request");
+        console.log(visibility_off);
     }
 
     function isBtnDisabled() {
@@ -51,10 +87,11 @@ function Signup() {
             !accountForm.lastName ||
             !accountForm.email ||
             !accountForm.password1 ||
-            !accountForm.agreeMarketing ||
+            // !accountForm.agreeMarketing ||
             !accountForm.agreeTerms;
 
-        console.log(isDisabled);
+        // For TBS and Dev only - remove in production code:
+        // console.log(isDisabled);
 
         return isDisabled;
     }
@@ -147,6 +184,10 @@ function Signup() {
                         placeholder={placeholders.password1}
                         onChange={handleInputFieldChange}
                     />
+                    <ButtonIcon
+                        buttonIconImg={visibility_on}
+                        onClick={handleVisibilityBtn}
+                    />
                 </div>
                 <div className="input-wrapper">
                     <label>Confirm Password:</label>
@@ -158,8 +199,12 @@ function Signup() {
                         placeholder={placeholders.password2}
                         onChange={handleInputFieldChange}
                     />
+                    <ButtonIcon
+                        buttonIconImg={visibility_off}
+                        onClick={handleVisibilityBtn}
+                    />
                 </div>
-                <div className="input-wrapper">
+                {/* <div className="input-wrapper">
                     I like to receive Weekly Newsletters:
                     <div>
                         <label>
@@ -185,15 +230,30 @@ function Signup() {
                             Disagree
                         </label>
                     </div>
+                </div> */}
+                <div>
+                    <input
+                        type="checkbox"
+                        name="agreeMarketing"
+                        checked={accountForm.agreeMarketing === true}
+                        onChange={handleCheckboxClick}
+                    />{" "}
+                    <label> - I agree to receive Weekly Newsletters</label>
                 </div>
-                <div className="input-wrapper">
+                <div>
                     <input
                         type="checkbox"
                         name="agreeTerms"
                         checked={accountForm.agreeTerms === true}
                         onChange={handleCheckboxClick}
                     />{" "}
-                    <label>I agree with Term of Services</label>
+                    <label> - I agree with Term of Services</label>
+                </div>
+
+                {/* Toggle-Switch from MUI library: */}
+                <div className="input-wrapper">
+                    <ToggleSwitch />
+                    <label>Here is to practice toggle switch</label>
                 </div>
 
                 <Button
