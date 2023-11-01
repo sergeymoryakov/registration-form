@@ -12,13 +12,15 @@ function Signup() {
         firstName: "Your first name",
         lastName: "Your last name",
         email: "Your email",
-        password1: "password",
-        password2: "confirm password",
-        agreeMarketing: "agree",
+        password1: "Password",
+        password2: "Confirm password",
+        agreeMarketing: false,
         agreeTerms: true,
     };
 
-    const [accountForm, setAccountForm] = useState({});
+    const [accountForm, setAccountForm] = useState({
+        agreeMarketing: false,
+    });
 
     const PASS_TYPE_VISIBLE = "text";
     const PASS_TYPE_INVISIBLE = "password";
