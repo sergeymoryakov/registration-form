@@ -1,3 +1,4 @@
+.container-signup,
 .form-signup {
     display: flex;
     flex-direction: column;
@@ -5,28 +6,47 @@
 }
 
 .input-wrapper {
+    position: relative;
+    /* padding-bottom: 1rem; */
+    /* display: flex;
+    flex-direction: row;
+    justify-content: space-between; */
+    /* border: 1px dashed greenyellow; */
+}
+
+.input-field,
+.input-password {
+    width: calc(100% - 4px);
+    line-height: 1.5rem;
+    border-color: var(--royal-blue);
+    border-radius: 4px;
+}
+
+input:focus {
+    outline: none; /* Removes the default browser outline */
+    background-color: var(--sky-gray);
+    border: 1px solid var(--fire-red);
+}
+
+.password-error {
+    position: absolute;
+    right: 0;
+    bottom: -0.85rem;
+    color: var(--fire-red);
+    font-size: 0.75rem;
+    font-style: italic;
+}
+
+.div-inline-flexbox {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-.input-field {
-    width: 60%;
-}
-
-.input-password {
-    width: 60%;
-}
-
-input:focus {
-    border-color: red;
-    background-color: aqua;
-    outline: none; /* Removes the default browser outline */
-}
-
-.password-1-error,
+/* .password-1-error,
 .password-2-error {
+    padding-inline: 2rem;
     color: red;
     font-size: 0.5rem;
     font-style: italic;
-}
+} */

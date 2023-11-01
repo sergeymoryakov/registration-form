@@ -1,18 +1,26 @@
-button {
+.create-account-btn {
     border-radius: 8px;
-    border: 1px solid transparent;
-    padding: 0.6em 1.2em;
-    font-size: 1em;
-    font-weight: 500;
+    /* padding: 0.6em 1.2em; */
     font-family: inherit;
-    background-color: #1a1a1a;
-    cursor: pointer;
+    font-size: 1rem;
+    line-height: 2rem;
+    color: var(--white);
+    background-color: var(--royal-blue);
+    border: 1px solid var(--royal-blue);
     transition: border-color 0.25s;
+    cursor: pointer;
 }
 
-button:disabled {
-    background-color: red;
-    color: #f9f9f9;
-    opacity: 0.5;
+.create-account-btn:hover {
+    color: var(--white);
+    background-color: var(--royal-blue);
+    border-color: var(--white);
+}
+
+.create-account-btn:disabled {
+    background-color: var(--gray);
+    color: var(--white);
+    border-color: var(--gray);
+    /* opacity: 0.5; */
     cursor: not-allowed;
 }

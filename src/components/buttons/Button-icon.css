@@ -1,4 +1,7 @@
 .button-icon {
+    position: absolute;
+    right: 0;
+    top: 1px;
     margin: 0;
     padding: 0;
     height: fit-content;
@@ -9,5 +12,7 @@
 }
 
 .icon {
-    background-color: aquamarine;
+    height: 1.5rem;
+    background-color: transparent;
+    /* border: 1px solid green; */
 }

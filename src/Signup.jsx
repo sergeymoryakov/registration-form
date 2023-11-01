@@ -12,7 +12,7 @@ function Signup() {
         firstName: "Your first name",
         lastName: "Your last name",
         email: "Your email",
-        password1: "passoword",
+        password1: "password",
         password2: "confirm password",
         agreeMarketing: "agree",
         agreeTerms: true,
@@ -150,12 +150,12 @@ function Signup() {
     }
 
     return (
-        <div>
+        <div className="container-signup">
             <h2>Create an account</h2>
             <p>New to our service? Quickly signup for an account now.</p>
             <form className="form-signup" action="">
                 <div className="input-wrapper">
-                    <label className="label-signup">Username:</label>
+                    {/* <label className="label-signup">Username:</label> */}
                     <input
                         className="input-field"
                         type="text"
@@ -166,7 +166,7 @@ function Signup() {
                     />
                 </div>
                 <div className="input-wrapper">
-                    <label>First Name:</label>
+                    {/* <label>First Name:</label> */}
                     <input
                         className="input-field"
                         type="text"
@@ -177,7 +177,7 @@ function Signup() {
                     />
                 </div>
                 <div className="input-wrapper">
-                    <label>Last Name:</label>
+                    {/* <label>Last Name:</label> */}
                     <input
                         className="input-field"
                         type="text"
@@ -188,7 +188,7 @@ function Signup() {
                     />
                 </div>
                 <div className="input-wrapper">
-                    <label>Email:</label>
+                    {/* <label>Email:</label> */}
                     <input
                         className="input-field"
                         type="email"
@@ -199,7 +199,7 @@ function Signup() {
                     />
                 </div>
                 <div className="input-wrapper">
-                    <label>Password:</label>
+                    {/* <label>Password:</label> */}
                     <input
                         className="input-password"
                         type={pass1Visibility}
@@ -213,10 +213,10 @@ function Signup() {
                         onClick={handleVisibility1Btn}
                     />
 
-                    <span>{pass1Error}</span>
+                    <span className="password-error">{pass1Error}</span>
                 </div>
                 <div className="input-wrapper">
-                    <label>Confirm Password:</label>
+                    {/* <label>Confirm Password:</label> */}
                     <input
                         className="input-password"
                         type={pass2Visibility}
@@ -230,7 +230,7 @@ function Signup() {
                         onClick={handleVisibility2Btn}
                     />
 
-                    <span>{pass2Error}</span>
+                    <span className="password-error">{pass2Error}</span>
                 </div>
                 <div>
                     <input
@@ -252,16 +252,16 @@ function Signup() {
                 </div>
 
                 <Button
+                    btnClass={"create-account-btn"}
                     isDisabled={isBtnDisabled()}
-                    buttonName={"Create Account and Continue"}
+                    buttonName={"Create Account"}
                     onClick={handleCreateAccountBtn}
                 />
-
-                <div className="input-wrapper">
-                    <p>Already registered?</p>
-                    <a href="">Log In</a>
-                </div>
             </form>
+            <div className="div-inline-flexbox">
+                <p>Already registered?</p>
+                <a href="">Login</a>
+            </div>
         </div>
     );
 }

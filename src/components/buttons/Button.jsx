@@ -1,10 +1,9 @@
 import React from "react";
 import "./Button.css";
 
-function Button({ isDisabled, buttonName, onClick }) {
-    // const btnClass = btnClass;
+function Button({ btnClass, isDisabled, buttonName, onClick }) {
     return (
-        <button disabled={isDisabled} onClick={onClick}>
+        <button className={btnClass} disabled={isDisabled} onClick={onClick}>
             {buttonName}
         </button>
     );
