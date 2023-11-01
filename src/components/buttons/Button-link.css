@@ -1,0 +1,13 @@
+.button-link {
+    font-family: inherit;
+    font-size: inherit;
+    color: var(--royal-blue);
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.button-link:hover {
+    color: var(--white);
+    text-decoration: underline;
+}
