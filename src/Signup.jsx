@@ -136,9 +136,11 @@ function Signup() {
 
         console.log("Clicked Create Account Button");
 
+        console.log("username: ", accountForm.username);
+        console.log("firstName: ", accountForm.firstName);
+        console.log("lastName: ", accountForm.lastName);
         console.log("Email: ", accountForm.email);
-        console.log("Password1: ", accountForm.password1);
-        console.log("Password2: ", accountForm.password2);
+        console.log("Password: ", accountForm.password1);
         console.log("Accept Newsletter: ", accountForm.agreeMarketing);
         console.log("Accept T&C: ", accountForm.agreeTerms);
 
@@ -148,9 +150,43 @@ function Signup() {
     }
 
     return (
-        <div className="container">
+        <div>
             <h2>Create an account</h2>
+            <p>New to our service? Quickly signup for an account now.</p>
             <form className="form-signup" action="">
+                <div className="input-wrapper">
+                    <label className="label-signup">Username:</label>
+                    <input
+                        className="input-field"
+                        type="text"
+                        name="username"
+                        autoComplete="username"
+                        placeholder={placeholders.username}
+                        onChange={handleInputFieldChange}
+                    />
+                </div>
+                <div className="input-wrapper">
+                    <label>First Name:</label>
+                    <input
+                        className="input-field"
+                        type="text"
+                        name="firstName"
+                        autoComplete="name"
+                        placeholder={placeholders.firstName}
+                        onChange={handleInputFieldChange}
+                    />
+                </div>
+                <div className="input-wrapper">
+                    <label>Last Name:</label>
+                    <input
+                        className="input-field"
+                        type="text"
+                        name="lastName"
+                        autoComplete="family-name"
+                        placeholder={placeholders.lastName}
+                        onChange={handleInputFieldChange}
+                    />
+                </div>
                 <div className="input-wrapper">
                     <label>Email:</label>
                     <input
@@ -177,8 +213,6 @@ function Signup() {
                         onClick={handleVisibility1Btn}
                     />
 
-                    {/* <SpanError functionName={isPassword1Compliant()} /> */}
-
                     <span>{pass1Error}</span>
                 </div>
                 <div className="input-wrapper">
@@ -195,8 +229,6 @@ function Signup() {
                         buttonIconImg={pass2VisibilityBtn}
                         onClick={handleVisibility2Btn}
                     />
-
-                    {/* <SpanError functionName={isPassword2Compliant()} /> */}
 
                     <span>{pass2Error}</span>
                 </div>
@@ -224,6 +256,11 @@ function Signup() {
                     buttonName={"Create Account and Continue"}
                     onClick={handleCreateAccountBtn}
                 />
+
+                <div className="input-wrapper">
+                    <p>Already registered?</p>
+                    <a href="">Log In</a>
+                </div>
             </form>
         </div>
     );
