@@ -18,6 +18,12 @@
     width: 60%;
 }
 
+input:focus {
+    border-color: red;
+    background-color: aqua;
+    outline: none; /* Removes the default browser outline */
+}
+
 .password-1-error,
 .password-2-error {
     color: red;
