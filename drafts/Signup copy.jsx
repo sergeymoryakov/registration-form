@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 // Import Switch from MUI library:
 import Switch from "@mui/material/Switch";
-import Button from "./components/buttons/Button";
-import ButtonIcon from "./components/buttons/button-icon";
+import Button from "../src/components/buttons/Button";
+import ButtonIcon from "../src/components/buttons/button-icon";
 import "./Signup.css";
 import ICON_VISIBILITY_OFF from "./assets/visibility_off_FILL0_wght400_GRAD0_opsz24.svg";
 import ICON_VISIBILITY_ON from "./assets/visibility_FILL0_wght400_GRAD0_opsz24.svg";

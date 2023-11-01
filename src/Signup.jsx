@@ -54,7 +54,7 @@ function Signup() {
 
         pass1Complexity = value.length >= 8;
 
-        console.log("pass1Complexity: ", pass1Complexity);
+        // console.log("pass1Complexity: ", pass1Complexity);
 
         setPass1Error(pass1Complexity == true ? "" : PASS1_COMPLEXITY_ERROR);
 
@@ -69,7 +69,7 @@ function Signup() {
 
         pass2Equality = value == accountForm.password1;
 
-        console.log("pass2Equality: ", pass2Equality);
+        // console.log("pass2Equality: ", pass2Equality);
 
         setPass2Error(pass2Equality == true ? "" : PASS2_EQUALITY_ERROR);
 
